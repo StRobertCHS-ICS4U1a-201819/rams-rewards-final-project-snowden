@@ -5,6 +5,9 @@
 
 # Ideas of Implementation
 * DnD App copy
+* No dropdown code
+* Right: QR Code
+* 3 Panel menus
 
 # What we need to do:
-[ ] Download Kivy/Django
+Download Kivy/Django [ ]
