@@ -10,4 +10,4 @@
 * 3 Panel menus
 
 # What we need to do:
-Download Kivy/Django [ ]
+- [ ] Download Kivy/Django
