@@ -26,3 +26,5 @@
 * Cav credit
 * Rubber Wristband
 * RAMS Fidget Spinner
+
+[Markdown Guide](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
