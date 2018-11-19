@@ -25,3 +25,4 @@
 * Caf Cookie
 * Cav credit
 * Rubber Wristband
+* RAMS Fidget Spinner
