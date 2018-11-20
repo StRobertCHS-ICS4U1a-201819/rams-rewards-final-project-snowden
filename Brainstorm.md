@@ -23,7 +23,7 @@
 * Ram of the month pens
 * St Robert Pins
 * Caf Cookie
-* Cav credit
+* Caf Credit
 * Rubber Wristband
 * RAMS Fidget Spinner
 
