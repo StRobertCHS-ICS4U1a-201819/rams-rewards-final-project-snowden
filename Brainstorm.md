@@ -7,17 +7,24 @@
 
 # Ideas of Implementation
 * DnD App copy
-* No dropdown code
+* No dropdown menu
 * Right: QR Code
 * Left: Management --> History, Account Management
 * Middle: Point counter
 * 3 Panel menus
 * QR/Code generator --> Already made
 
-# What we need to do:
-- [ ] Download Kivy/Django
-- [ ] Install
-- [ ] Set-up
+# What we need to do (Kivy, RRSA):
+- [ ] Set-up Kivy 1/2
+- [ ] Learn Kivy
+
+# What we need to do (Kivy, RRTAA):
+- [x] Set-up Kivy
+- [ ] Learn Kivy 
+
+# What we need to do (Django):
+- [x] Set-up Django
+- [ ] Learn Django
 
 # Rewards:
 * Ram of the month pens
