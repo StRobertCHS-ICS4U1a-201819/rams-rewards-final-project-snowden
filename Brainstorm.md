@@ -15,16 +15,24 @@
 * QR/Code generator --> Already made
 
 # What we need to do (Kivy, RRSA):
-- [ ] Set-up Kivy 1/2
+- [x] Set-up Kivy
 - [ ] Learn Kivy
 
 # What we need to do (Kivy, RRTAA):
 - [x] Set-up Kivy
-- [ ] Learn Kivy 
+- [ ] Learn Kivy
+- [ ] Learn Buttons
+- [ ] Import Code generation
+- [ ] Convert code to "friendly" format
+- [ ] Dropdown vs Swipe
+- [ ] Importing Events
 
 # What we need to do (Django):
 - [x] Set-up Django
 - [ ] Learn Django
+- [ ] Log-in from web console
+- [ ] Student info
+- [ ] Database for users
 
 # Rewards:
 * Ram of the month pens
