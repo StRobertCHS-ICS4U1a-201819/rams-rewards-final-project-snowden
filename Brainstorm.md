@@ -7,7 +7,7 @@
 
 # Ideas of Implementation
 * DnD App copy
-* No dropdown menu
+* No drop down menu <-- Mr. Gallo wants a sliding menu
 * Right: QR Code
 * Left: Management --> History, Account Management
 * Middle: Point counter
@@ -41,5 +41,14 @@
 * Caf Credit
 * Rubber Wristband
 * RAMS Fidget Spinner
+* Cumulative points rewards --> Like a GoFundMe
+
+# Point Systems:
+| Activity        | Point Value           | Blank  |
+| ------------- |-------------:| -----:|
+| Attending Mass      | # | $ |
+| Club Participation      | # | $|
+| Sharelife | # | $ |
+| Attending A School Event | # | $ |
 
 [Markdown Guide](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
