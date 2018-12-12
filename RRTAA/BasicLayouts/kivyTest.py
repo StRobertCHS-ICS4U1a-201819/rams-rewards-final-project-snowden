@@ -16,7 +16,6 @@ class TestApp(App):
         return Button()
 TestApp().run()
 '''
-
 '''
 # Sample 2:
 class CustomWidget(Widget):
