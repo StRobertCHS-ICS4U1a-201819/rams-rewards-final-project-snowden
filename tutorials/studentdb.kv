@@ -1,5 +1,5 @@
 
-#: import main kivytut4
+#: import main studentdb
 #: import ListAdapter kivy.adapters.listadapter.ListAdapter
 #: import ListItemButton kivy.uix.listview.ListItemButton
 
@@ -13,7 +13,18 @@ StudentDB:
     padding: 10
     spacing: 10
 
+    BoxLayout:
+        size_hint_y: None
+        height: "40dp"
 
+        Label:
+            text: "First Name"
+        TextInput:
+            id: first_name
+        Label:
+            text: "Last Name"
+        TextInput:
+            id: last_name
 
     BoxLayout:
         size_hint_y: None
@@ -31,7 +42,9 @@ StudentDB:
             size_hint_x: 15
             on_press: root.replace_student()
 
+    # Define starting data and point to the ListItemButton
+    # in the Python code
     ListView:
         id: students_list_view
         adapter:
-            ListAdapter(data=["Doug Smith"], cls=main.StudentListButton)
+            ListAdapter(data=["Connor Dong"], cls=main.StudentListButton)
