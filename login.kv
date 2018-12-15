@@ -1,0 +1,21 @@
+ScreenManagement:
+    LoginPage:
+    UserPage:
+
+<LoginPage>:
+    name: "login_page"
+    BoxLayout:
+        TextInput:
+            id: login
+        TextInput:
+            id: passw
+            password: True # hide password
+        Button:
+            text: "go"
+            on_release: root.verify_credentials()
+
+<UserPage>:
+    name: "user"
+    Button:
+        text: "back"
+        on_release: app.root.current = "login_page"
