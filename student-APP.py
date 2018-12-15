@@ -5,6 +5,7 @@ from kivy.lang import Builder
 root = Builder.load_string("""
 PageLayout:
     BoxLayout:
+        
         canvas:
             Color:
                 rgba: 216/255., 195/255., 88/255., 1
@@ -43,13 +44,12 @@ PageLayout:
             Rectangle:
                 pos: self.pos
                 size: self.size
-        cols: 2
-        Label:
-            text: 'page 3'
+        cols: 1
         Button:
             text: 'student_id barcode'
             on_press: print("test")
-        
+        AsyncImage:
+            source: 'https://i.redd.it/lr720nuui4z11.png'
 """)
 
 
