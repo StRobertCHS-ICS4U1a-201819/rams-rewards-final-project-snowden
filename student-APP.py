@@ -47,15 +47,13 @@ PageLayout:
         Label:
             text: 'page 3'
         Button:
-            text: 'testlo3'
-            on_press: print("test last page")
+            text: 'student_id barcode'
+            on_press: print("test")
         
 """)
 
 
-  # if __name__ == '__main__':
-  #  runTouchApp(Builder.load_string(kv))
-  # runTouchApp()
+
 
 class KivyTut2App(App):
     def build(self):
@@ -63,11 +61,9 @@ class KivyTut2App(App):
 
 
 sample_app = KivyTut2App()
-#if __name__ == '__main__':
-#KivyTut2App().run()
+
 sample_app.run()
 
 
-#        return Label(text='Hello world')
 
 
