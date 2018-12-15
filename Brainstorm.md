@@ -20,10 +20,10 @@
 
 # What we need to do (Kivy, RRTAA):
 - [x] Set-up Kivy
-- [ ] Learn Kivy
-- [ ] Learn Buttons
-- [ ] Import Code generation
-- [ ] Convert code to "friendly" format
+- [x] Learn Kivy
+- [x] Learn Buttons
+- [x] Import Code generation
+- [x] Convert code to "friendly" format
 - [ ] Dropdown vs Swipe
 - [ ] Importing Events
 
