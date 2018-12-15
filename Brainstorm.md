@@ -44,11 +44,11 @@
 * Cumulative points rewards --> Like a GoFundMe
 
 # Point Systems:
-| Activity        | Point Value           | Blank  |
+| Activity        | Point Value LB          | Point Value UB  |
 | ------------- |-------------:| -----:|
-| Attending Mass      | # | $ |
-| Club Participation      | # | $|
-| Sharelife | # | $ |
-| Attending A School Event | # | $ |
+| Attending Mass      | 100 | 100 |
+| Club Participation      | 50 | 1000|
+| Sharelife | 1000 | 1000 |
+| Attending A School Event | 500 | 1500 |
 
 [Markdown Guide](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
