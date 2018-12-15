@@ -3,18 +3,20 @@
     color: 0, 7, 5, 1
     size: 150, 50
     background_normal: ''
-    background_down: 'Grey_full.png'
+    background_down: 'bkgrd-down-color.png'
     background_color: .88, .88, .88, 1
 
 <CustomWidget>
     CustButton:
-        text: "Random"
+        text: "Random1"
         pos: root.x, 200
+        on_press: entry1.text="trychange"
 
     CustButton:
-        text: "Buttons"
+        id: entry1
+        text: "TButtons"
         pos: 200, root.y
 
     CustButton:
-        text: "Random"
+        text: "Random2"
         pos: 200, 400
