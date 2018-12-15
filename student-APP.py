@@ -1,4 +1,4 @@
-#from kivy.base import runTouchApp
+
 from kivy.app import App
 from kivy.lang import Builder
 
