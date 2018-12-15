@@ -5,17 +5,30 @@ ScreenManagement:
 <LoginPage>:
     name: "login_page"
     BoxLayout:
+        Label:
+            text: "Username"
         TextInput:
             id: login
+        Label:
+            text: "Password"
         TextInput:
             id: passw
             password: True # hide password
         Button:
-            text: "go"
-            on_release: root.verify_credentials()
+            text: "log in"
+            on_release:
+                root.verify_credentials()
+                root.manager.transition.direction = "left"
+                root.manager.transition.duration = 1
+                root.manager.current  = "user_page"
 
 <UserPage>:
-    name: "user"
-    Button:
-        text: "back"
-        on_release: app.root.current = "login_page"
+    name: "user_page"
+    BoxLayout:
+        Button:
+            text: "Log out"
+            size_hint_x : 15
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.transition.duration = 1
+                root.manager.current  = "login_page"
