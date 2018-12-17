@@ -47,7 +47,7 @@
 | Activity        | Point Value LB          | Point Value UB  |
 | ------------- |-------------:| -----:|
 | Attending Mass      | 100 | 100 |
-| Club Participation      | 50 | 1000|
+| Club Participation      | 25 | 1000|
 | Sharelife | 1000 | 1000 |
 | Attending A School Event | 500 | 1500 |
 
