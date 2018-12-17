@@ -1,48 +1,41 @@
+# Kivy App imports
 from kivy.app import Widget
-from kivy.graphics.svg import Svg
-from kivy.uix.pagelayout import *
 from kivy.app import App
-from kivy.uix.screenmanager import ScreenManager, Screen
+
+# Kivy builder import
 from kivy.lang.builder import Builder
+
+# Kivy svg graphics import
+from kivy.graphics.svg import Svg
+
+# Python Kivy UIX imports
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.label import Label
+from kivy.uix.pagelayout import *
+from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.textinput import TextInput
 
 
 isLoggedIn = False
-__loginInfo = {"RootAdmin": "RootProjectApple"}
-"""
-class LoginPage(Screen):
-    def verify_credentials(self):
-        if self.ids["login"].text == "username" and self.ids["passw"].text == "password":
-            self.manager.current = "user"
+__loginInfo = {"Root": "Root2382"}
+__studentDB = {1122365: 0}
 
-class UserPage(Screen):
-    pass
+def getSDB():
+    return __studentDB
 
-class ScreenManagement(ScreenManager):
-    pass
+class LoginScreen(GridLayout):
+    def __init__(self, **kwargs):
+        super(LoginScreen, self).__init__(**kwargs)
+        self.cols = 2
 
-class FinalApp(App):
-    def builder(self):
-        return ScreenManagement
+        self.add_widget(Label(text="Username:"))
+        self.username = TextInput(multiline=False)
+        self.add_widget(self.username)
 
-myApp = FinalApp()
-myApp.run()
+        self.add_widget(Label(text="Password:"))
+        self.password = TextInput(multiline=False, password=True)
+        self.add_widget(self.password)
 
-"""
-def login(username, pwd):
-    if (__loginInfo.__contains__(username)):
-        if (__loginInfo.get(username) == pwd):
-            return "Welcome Back " + username
-        else:
-            return "Invalid Login Credentials"
-    else:
-        return "Invalid Login Credentials"
-
-class loginscreen():
-    if (not isLoggedIn):
-        pass
-        # Lock them on this screen and Lock the menu
-    else:
-        pass
 
 # Form for creating a new point event, Should create a event code
 class page1():
@@ -62,7 +55,7 @@ class page4():
 
 class FinalApp(App):
     def build(self):
-        return PageLayout()
+        return LoginScreen()
 
 myApp = FinalApp()
 myApp.run()
