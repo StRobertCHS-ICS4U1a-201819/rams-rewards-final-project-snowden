@@ -1,5 +1,4 @@
 from kivy.app import App
-from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang.builder import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 
