@@ -1,6 +1,6 @@
 from kivy.app import App
-from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang.builder import Builder
+from kivy.uix.screenmanager import ScreenManager, Screen
 
 class LoginPage(Screen):
     def verify_credentials(self):
@@ -10,8 +10,16 @@ class LoginPage(Screen):
 class UserPage(Screen):
     pass
 
+
 class ScreenManagement(ScreenManager):
     pass
+
+screen_manager = ScreenManager()
+
+
+screen_manager.add_widget(LoginPage(name="login_page"))
+screen_manager.add_widget(UserPage(name="user_page"))
+
 
 kv_file = Builder.load_file('login.kv')
 

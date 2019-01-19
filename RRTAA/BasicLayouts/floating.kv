@@ -1,0 +1,25 @@
+<CustButton@Button>:
+    font_size: 32
+    color: 0,0,0,1
+    size: 150, 50
+    background_normal: '' # White button background
+    background_down: 'bg.png' # Can change to png
+    background_color: 0.88, 0.88, 0.88, 1
+    size_hint: .4, .3
+
+<FloatLayout>:
+    CustButton:
+        text: "Top Left"
+        pos_hint: {"x": 0, "top": 1}
+    CustButton:
+        text: "Bottom Left"
+        pos_hint: {"right": 1, "y": 0}
+    CustButton:
+        text: "Top Right"
+        pos_hint: {"right": 1, "top": 1}
+    CustButton:
+        text: "Bottom Left"
+        pos_hint: {"left": 1, "bottom": 0}
+    CustButton:
+        text: "Center"
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}

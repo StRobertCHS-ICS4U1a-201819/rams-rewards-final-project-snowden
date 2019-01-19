@@ -5,17 +5,70 @@ ScreenManagement:
 <LoginPage>:
     name: "login_page"
     BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: "Username"
         TextInput:
             id: login
+        Label:
+            text: "Password"
         TextInput:
             id: passw
             password: True # hide password
         Button:
-            text: "go"
-            on_release: root.verify_credentials()
+            text: "log in"
+            on_release:
+                root.verify_credentials()
+                root.manager.transition.direction = "up"
+                root.manager.transition.duration = 1
+                root.manager.current  = "user_page"
 
 <UserPage>:
-    name: "user"
-    Button:
-        text: "back"
-        on_release: app.root.current = "login_page"
+    name: "user_page"
+    PageLayout:
+        BoxLayout:
+
+            canvas:
+                Color:
+                    rgba: 216/255., 195/255., 88/255., 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            orientation: 'vertical'
+            Label:
+                size_hint_y: None
+                height: 1.5 * self.texture_size[1]
+                text: 'student history'
+            Button:
+                text: 'points'
+                on_press: print("student points")
+        BoxLayout:
+            orientation: 'vertical'
+            canvas:
+                Color:
+                    rgba: 109/255., 8/255., 57/255., 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Label:
+                text: 'Dong'
+            Label:
+                text: 'Connor'
+            Label:
+                text: 'student id'
+            Label:
+                text: 'homeroom'
+
+        BoxLayout:
+            canvas:
+                Color:
+                    rgba: 37/255., 39/255., 30/255., 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            cols: 1
+            Button:
+                text: 'student_id barcode'
+                on_press: print("test")
+            AsyncImage:
+                source: 'https://i.redd.it/lr720nuui4z11.png'
