@@ -42,6 +42,12 @@ ScreenManagement:
             Button:
                 text: 'points'
                 on_press: print("student points")
+            Button:
+                text: "log out"
+                on_release:
+                    root.manager.transition.direction = "down"
+                    root.manager.transition.duration = 1
+                    root.manager.current  = "login_page"
         BoxLayout:
             orientation: 'vertical'
             canvas:
