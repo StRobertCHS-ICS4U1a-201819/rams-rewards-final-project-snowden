@@ -1,11 +1,10 @@
-
 from kivy.app import App
 from kivy.lang import Builder
 
 root = Builder.load_string("""
 PageLayout:
     BoxLayout:
-        
+
         canvas:
             Color:
                 rgba: 216/255., 195/255., 88/255., 1
@@ -36,7 +35,7 @@ PageLayout:
             text: 'student id' 
         Label: 
             text: 'homeroom'
-        
+
     BoxLayout:
         canvas:
             Color:
@@ -53,8 +52,6 @@ PageLayout:
 """)
 
 
-
-
 class KivyTut2App(App):
     def build(self):
         return root
@@ -63,7 +60,3 @@ class KivyTut2App(App):
 sample_app = KivyTut2App()
 
 sample_app.run()
-
-
-
-
