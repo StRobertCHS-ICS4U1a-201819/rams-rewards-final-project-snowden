@@ -1,0 +1,78 @@
+<LoginScreen>:
+    username: login
+    password: passw
+    FloatLayout:
+        pos_hint_y: 1
+        pos_hint_x: 4.7
+        TextInput:
+            pos_hint: {"center_x": 0.6, "center_y": 0.75}
+            id: login
+            size_hint_x: 0.5
+            size_hint_y: 0.05
+
+        Label:
+            text: "Username"
+            pos_hint: {"center_x": 0.3, "center_y": 0.75}
+            background_color: 0.5,0.5,0.5,0.8
+
+        TextInput:
+            id: passw
+            pos_hint: {"center_x": 0.6, "center_y": 0.675}
+            size_hint_x: .5
+            size_hint_y: .05
+            password: True # hide password
+
+        Label:
+            text: "Password"
+            pos_hint: {"center_x": 0.3, "center_y": 0.675}
+
+        CustButton:
+            id: enter_credBtn
+            pos_hint: {"center_x": 0.5, "center_y": .20}
+            text: "Login"
+
+        CustButton:
+            id: nxtPage1Btn
+            text: "Next Page"
+            on_press: root.manager.current = "screen1"
+
+<EventScreen>:
+    GridLayout:
+        orientation: "vertical"
+        spacing: 0.5
+        padding: 10
+
+        Button:
+            text: "Login"
+            size_hint: .7, .5
+
+        Button:
+            text: "2nd"
+        Button:
+            text: "back"
+            on_release: app.root.current = "login_page"
+
+<ScanScreen>:
+    Button:
+        on_release: app.root.current = "user1"
+
+<HistScreen>:
+    Button:
+        text: "Page 2"
+        on_release: app.root.current = "user2"
+    Button:
+        text: "Page 4"
+        on_release: app.root.current = "user4"
+
+<Hist2Screen>:
+    Button:
+        text: "Page 3"
+        on_release: app.root.current = "user3"
+
+<CustButton@Button>:
+    font_size: 30
+    color: 0,0,0,1
+    size: 150, 50
+    background_normal: ''
+    background_color: 0.8, 0.8, 0.8, 1
+    size_hint: .5, .1

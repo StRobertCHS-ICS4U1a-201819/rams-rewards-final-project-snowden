@@ -20,10 +20,10 @@
 
 # What we need to do (Kivy, RRTAA):
 - [x] Set-up Kivy
-- [ ] Learn Kivy
-- [ ] Learn Buttons
-- [ ] Import Code generation
-- [ ] Convert code to "friendly" format
+- [x] Learn Kivy
+- [x] Learn Buttons
+- [x] Import Code generation
+- [x] Convert code to "friendly" format
 - [ ] Dropdown vs Swipe
 - [ ] Importing Events
 
@@ -44,11 +44,11 @@
 * Cumulative points rewards --> Like a GoFundMe
 
 # Point Systems:
-| Activity        | Point Value           | Blank  |
+| Activity        | Point Value LB          | Point Value UB  |
 | ------------- |-------------:| -----:|
-| Attending Mass      | # | $ |
-| Club Participation      | # | $|
-| Sharelife | # | $ |
-| Attending A School Event | # | $ |
+| Attending Mass      | 100 | 100 |
+| Club Participation      | 25 | 1000|
+| Sharelife | 1000 | 1000 |
+| Attending A School Event | 500 | 1500 |
 
 [Markdown Guide](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)

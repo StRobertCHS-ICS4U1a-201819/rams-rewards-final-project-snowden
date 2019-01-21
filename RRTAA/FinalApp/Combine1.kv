@@ -1,0 +1,330 @@
+<RootWidget>:
+    manager: manager
+    do_default_tab: False
+    # add a ScreenManager to the panel
+    ScreenManager:
+        id: manager
+        Screen:
+            id: sc1
+            name: 'screen_one'
+            Button:
+                text: 'Screen One'
+                on_press:
+                    root.manager.current = "screen_four"
+        Screen
+            id: sc2
+            name: 'screen_two'
+            Button:
+                text: 'Screen Two'
+                on_press:
+                    root.manager.current = "screen_student_list"
+        Screen
+            id: sc3
+            name: 'screen_three'
+            Button:
+                text: 'Screen Three'
+                on_press:
+                    root.manager.current = "screen_date_list"
+
+        Screen:
+            id: sc4
+            name: 'screen_four'
+            BoxLayout:
+                orientation: "vertical"
+                size: root.size
+                spacing: 20
+                padding: 20
+
+                Label:
+                    text: "First Step"
+
+                Button:
+                    text: 'Next'
+                    on_press:
+                        root.manager.current = "screen_five"
+
+                Spinner:
+                    text: "Reward Activities"
+                    values: ["Highest Mark", "Average over 85", "Club Meeting", "Sport Team", "Activities Leader"]
+                    id: spinner_id
+                    on_text: root.spinner_clicked(spinner_id.text)
+
+        Screen:
+            id: sc5
+            name: 'screen_five'
+            BoxLayout:
+                orientation: "vertical"
+                size: root.size
+                spacing: 20
+                padding: 20
+
+                Label:
+                    text: 'Use your phone to scan the barcode and enter the id of student in the box below '
+
+
+
+                Button:
+                    text: 'Next'
+                    on_press:
+                        root.manager.current = "screen_date"
+                TextInput:
+                    id: _a
+                    hint_text: 'hello'
+                    multiline: 'False'
+                    size: 500,400
+                    size_hint: None, None
+                    text:'Enter here'
+                    id: ta
+
+                Button:
+                    text: 'Submit'
+                    on_press:
+                        root.id_inputted(ta.text)
+                        root.set_student_history()
+
+        Screen:
+            id: sc6
+            name: 'screen_student_list'
+            BoxLayout:
+                orientation: "vertical"
+                size: root.size
+                spacing: 20
+                padding: 20
+
+
+                Button:
+                    text: 'Justin, Guo'
+                    on_press:
+                        root.manager.current = "screen_Guo"
+
+                Button:
+                    text: 'Evan Bai'
+                    on_press:
+                        root.manager.current = "screen_Bai"
+
+                Button:
+                    text: 'Jerry Cui'
+                    on_press:
+                        root.manager.current = "screen_Cui"
+
+                Button:
+                    text: 'Waldon Zhang'
+                    on_press:
+                        root.manager.current = "screen_Zhang"
+
+                Button:
+                    text: 'Home'
+                    on_press:
+                        root.manager.current = "screen_two"
+
+
+        Screen:
+            id: sc7
+            name: 'screen_Guo'
+            BoxLayout:
+                orientation: "vertical"
+                size: root.size
+                spacing: 20
+                padding: 20
+
+                Button:
+                    text: str(root.reward_history1)
+                Button:
+                    text: 'Back Page'
+                    on_press:
+                        root.manager.current = "screen_student_list"
+        Screen:
+            id: sc8
+            name: 'screen_Bai'
+            BoxLayout:
+                orientation: "vertical"
+                size: root.size
+                spacing: 20
+                padding: 20
+                Button:
+                    text: str(root.reward_history2)
+                Button:
+                    text: 'Back Page'
+                    on_press:
+                        root.manager.current = "screen_student_list"
+
+        Screen:
+            id: sc9
+            name: 'screen_Cui'
+            BoxLayout:
+                orientation: "vertical"
+                size: root.size
+                spacing: 20
+                padding: 20
+                Button:
+                    text: str(root.reward_history3)
+                Button:
+                    text: 'Back Page'
+                    on_press:
+                        root.manager.current = "screen_student_list"
+        Screen:
+            id: sc10
+            name: 'screen_Zhang'
+            BoxLayout:
+                orientation: "vertical"
+                size: root.size
+                spacing: 20
+                padding: 20
+                Button:
+                    text: str(root.reward_history4)
+                Button:
+                    text: 'Back Page'
+                    on_press:
+                        root.manager.current = "screen_student_list"
+
+        Screen:
+            id: sc11
+            name: 'screen_date'
+            BoxLayout:
+                orientation: "vertical"
+                size: root.size
+                spacing: 20
+                padding: 20
+
+                Label:
+                    text: 'Enter the date of the activities that you entered'
+
+                Button:
+                    text: 'Submit'
+                    on_press:
+
+                        root.add_date(ti.text)
+                        root.set_date_history()
+
+                TextInput:
+                    id: _a
+                    hint_text: 'hello'
+                    multiline: 'False'
+                    size: 500,400
+                    size_hint: None, None
+                    text:'Enter here'
+                    id: ti
+
+                Button:
+                    text: 'Home'
+                    on_press:
+                        root.manager.current = "screen_one"
+        Screen
+            id: sc12
+            name: 'screen_date_list'
+            BoxLayout:
+                orientation: "vertical"
+                size: root.size
+                spacing: 20
+                padding: 20
+                Button:
+                    text: 'Highest Mark'
+                    on_press:
+                        root.manager.current = "screen_13"
+                Button:
+                    text: 'Average over 85'
+                    on_press:
+                        root.manager.current = "screen_14"
+                Button:
+                    text: 'Club Meeting'
+                    on_press:
+                        root.manager.current = "screen_15"
+                Button:
+                    text: 'Sport Team'
+                    on_press:
+                        root.manager.current = "screen_16"
+
+                Button:
+                    text: 'Activities Leader'
+                    on_press:
+                        root.manager.current = "screen_17"
+                Button:
+                    text: 'Home'
+                    on_press:
+                        root.manager.current = "screen_three"
+        Screen
+            id: sc13
+            name: 'screen_13'
+            BoxLayout:
+                orientation: "vertical"
+                size: root.size
+                spacing: 20
+                padding: 20
+                Button:
+                    text: str(root.date_history1)
+                Button:
+                    text: 'Back Page'
+                    on_press:
+                        root.manager.current = "screen_date_list"
+        Screen
+            id: sc14
+            name: 'screen_14'
+            BoxLayout:
+                orientation: "vertical"
+                size: root.size
+                spacing: 20
+                padding: 20
+                Button:
+                    text: str(root.date_history2)
+                Button:
+                    text: 'Back Page'
+                    on_press:
+                        root.manager.current = "screen_date_list"
+        Screen
+            id: sc15
+            name: 'screen_15'
+            BoxLayout:
+                orientation: "vertical"
+                size: root.size
+                spacing: 20
+                padding: 20
+                Button:
+                    text: str(root.date_history3)
+                Button:
+                    text: 'Back Page'
+                    on_press:
+                        root.manager.current = "screen_date_list"
+        Screen
+            id: sc16
+            name: 'screen_16'
+            BoxLayout:
+                orientation: "vertical"
+                size: root.size
+                spacing: 20
+                padding: 20
+                Button:
+                    text: str(root.date_history4)
+                Button:
+                    text: 'Back Page'
+                    on_press:
+                        root.manager.current = "screen_date_list"
+        Screen
+            id: sc17
+            name: 'screen_17'
+            BoxLayout:
+                orientation: "vertical"
+                size: root.size
+                spacing: 20
+                padding: 20
+                Button:
+                    text: str(root.date_history5)
+                Button:
+                    text: 'Back Page'
+                    on_press:
+                        root.manager.current = "screen_date_list"
+
+
+
+
+
+
+
+    TabbedPanelHeader:
+        text: 'Distribution'
+        screen: sc1.name
+    TabbedPanelHeader:
+        text: 'Student'
+        screen: sc2.name
+    TabbedPanelHeader:
+        text: 'Reward'
+        screen: sc3.name
