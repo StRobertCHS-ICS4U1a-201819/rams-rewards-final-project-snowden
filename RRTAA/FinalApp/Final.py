@@ -35,6 +35,7 @@ studentDB = {}
 
 currentEventPV = ""
 currentEventDc = ""
+pointVariable = 0
 
 class Event(object):
     def __init__(self, points, eventType, description):
@@ -428,6 +429,9 @@ class EventScreen(Screen):
         currentEvent = myEvent
         global currentCode
         currentCode = code
+        global pointVariable
+        pointVariable = myEvent.get_points()
+        print (pointVariable)
 
     def get_des(self):
         return currentEvent.get_des()
@@ -436,6 +440,7 @@ class EventScreen(Screen):
 class ScanScreen(Screen):
     def add_points(self, stuNo):
         studentDB.get(str(stuNo)).addActivity(currentCode, currentEvent.get_points())
+        print(studentDB.get(str(stuNo)).points)
 
 # Viewing a student's history record
 class HistScreen(Screen):
