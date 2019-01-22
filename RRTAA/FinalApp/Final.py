@@ -65,7 +65,12 @@ class customPopup(Popup):
         currentEventDc = eventType
 
 class histPopup(Popup):
-    pass
+    def pass_hisString(self):
+        return hisString
+
+class hist2Popup(Popup):
+    def pass_hisString(self):
+        return hisString
 
 class Student(object):
     def __init__(self, name):
@@ -82,6 +87,7 @@ class Student(object):
         return self.activityNo
 
 studentDB["0000000"] = Student("Felix. Y")
+usedCodes["Test"] = Event(500, "Attending a Club", "Coding Club")
 
 class Teacher(object):
     def __init__(self, name):
@@ -99,7 +105,9 @@ Builder.load_string("""
             id: toHistory
             text: "Check History"
             pos_hint: {"center_x": 0.05, "center_y": 0.95}
-            on_press: app.root.current = "screen3"
+            on_press: 
+                root.manager.transition.direction = "right"
+                app.root.current = "screen3"
             
         TextInput:
             pos_hint: {"center_x": 0.6, "center_y": 0.75}
@@ -164,6 +172,7 @@ Builder.load_string("""
             size_hint_y: 0.1
             on_press:
                 root.createEvent(description.text)
+                root.manager.transition.direction = "left"
                 app.root.current = "screen2"
             
 <ScanScreen>:
@@ -235,7 +244,23 @@ Builder.load_string("""
                 root.add_points(StuNoInput.text)
 
 <HistScreen>:
-    FloatLayout:        
+    FloatLayout:
+        Button:
+            size_hint: 0.4, 0.1
+            id: toLogin
+            text: "Back to Login"
+            pos_hint: {"center_x": 0.95, "center_y": 0.95}
+            on_press:
+                root.manager.transition.direction = "left"
+                app.root.current = "login"
+        
+        Button:
+            size_hint: 0.4, 0.1
+            id: toEventHistory
+            text: "Event History"
+            pos_hint: {"center_x": 0.05, "center_y": 0.95}
+            on_press: app.root.current = "screen4"
+                        
         TextInput:
             size_hint: 0.4, 0.05
             pos_hint: {"center_x": 0.5, "center_y": 0.7}
@@ -291,7 +316,7 @@ Builder.load_string("""
                 on_press: StuNo.text += self.text
             Button:
                 text: "Bkspace"
-                on_press: StuNo.text = StuNoInput.text[:-1]
+                on_press: StuNo.text = StuNo.text[:-1]
             
         Button:
             text: "Check History"
@@ -302,8 +327,35 @@ Builder.load_string("""
                 root.open_history()
 
 <Hist2Screen>:
-    Button:
-        text: "Page 3"
+    FloatLayout:
+        Button:
+            size_hint: 0.4, 0.1
+            id: toLogin
+            text: "Back to Login"
+            pos_hint: {"center_x": 0.05, "center_y": 0.95}
+            on_press:
+                root.manager.transition.direction = "left"
+                app.root.current = "login"
+        
+        Button:
+            size_hint: 0.4, 0.1
+            id: toEventHistory
+            text: "User History"
+            pos_hint: {"center_x": 0.95, "center_y": 0.95}
+            on_press: app.root.current = "screen3"
+                        
+        TextInput:
+            size_hint: 0.4, 0.05
+            pos_hint: {"center_x": 0.5, "center_y": 0.7}
+            id: eventCode
+        
+        Button:
+            text: "Check Event"
+            size_hint: 0.4, 0.3
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            on_press:
+                root.checkHistory(eventCode.text)
+                root.open_history()
 
 <CustButton@Button>:
     font_size: 30
@@ -391,7 +443,15 @@ Builder.load_string("""
     size_hint: 0.5, 1
     Label:
         id: labelText
-        text: ""
+        text: root.pass_hisString()
+<hist2Popup>:
+    id: hist2Popup
+    display: labelText
+    title: "Activity Information:"
+    size_hint: 0.5, 1
+    Label:
+        id: labelText
+        text: root.pass_hisString()
 """)
 
 # Basic login screen
@@ -460,7 +520,20 @@ class HistScreen(Screen):
 
 # Check History for an event --> Should last for 1 day
 class Hist2Screen(Screen):
-    pass
+    def open_history(self):
+        hist2Popup().open()
+
+    def checkHistory(self, code):
+        global hisString
+        hisString = ""
+        print(usedCodes.get(code).get_points())
+        try:
+            des = usedCodes.get(code).get_des()
+            poi = usedCodes.get(code).get_points()
+            day = usedCodes.get(code).get_date()
+            hisString = "Event Description: " + des + "\n" + "Points Earned: " + str(poi) + "\n" + "Date: " + day.__str__()
+        except:
+            hisString = "Invalid/Expired Event Code"
 
 sm = ScreenManager()
 sm.add_widget(LoginScreen(name="login"))
