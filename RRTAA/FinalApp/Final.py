@@ -30,24 +30,45 @@ from kivy.uix.textinput import TextInput
 
 isLoggedIn = False
 loginInfo = {"": ""}
-usedCodes = []
-events = []
+usedCodes = {}
 studentDB = {}
 
+currentEventPV = ""
+currentEventDc = ""
+
 class Event(object):
-    def __init__(self, points, eventType):
+    def __init__(self, points, eventType, description):
         self.points = points
         self.eventType = eventType
-        self.title = ""
+        self.title = description
+        self.date = datetime.datetime.now()
+
+    def get_points(self):
+        return self.points
+
+    def get_des(self):
+        return self.title
+
+    def get_date(self):
+        return self.date
+
+currentEvent = Event(None, None, None)
+currentCode = ""
 
 class customPopup(Popup):
     def returningValues(self, pointValue, eventType):
-        myEvent = Event(pointValue, eventType)
-        events.append(myEvent)
+        global currentEventPV
+        currentEventPV = pointValue
+        global currentEventDc
+        currentEventDc = eventType
+
+class historyPopup(Popup):
+    pass
 
 class Student(object):
-    def __init__(self):
+    def __init__(self, name):
         self.activityNo = []
+        self.name = name
         self.points = 0
 
     def addActivity(self, activityCode, points):
@@ -55,8 +76,10 @@ class Student(object):
             self.activityNo.append(activityCode)
             self.points += points
 
-stu1 = Student()
-studentDB["0000000"] = stu1
+    def get_history(self):
+        return self.activityNo
+
+studentDB["0000000"] = Student("Felix. Y")
 
 class Teacher(object):
     def __init__(self, name):
@@ -69,6 +92,13 @@ Builder.load_string("""
     FloatLayout:
         pos_hint_y: 1
         pos_hint_x: 4.7
+        Button:
+            size_hint: 0.4, 0.1
+            id: toHistory
+            text: "Check History"
+            pos_hint: {"center_x": 0.05, "center_y": 0.95}
+            on_press: app.root.current = "screen3"
+            
         TextInput:
             pos_hint: {"center_x": 0.6, "center_y": 0.75}
             id: login
@@ -131,12 +161,13 @@ Builder.load_string("""
             pos_hint: {"center_x": 0.5, "center_y": 0.15}
             size_hint_y: 0.1
             on_press:
+                root.createEvent(description.text)
                 app.root.current = "screen2"
             
-
 <ScanScreen>:
+    id: scan
     display: StuNoInput
-    FloatLayout:
+    FloatLayout:        
         TextInput:
             size_hint: 0.4, 0.05
             pos_hint: {"center_x": 0.5, "center_y": 0.7}
@@ -194,21 +225,78 @@ Builder.load_string("""
                 text: "Bkspace"
                 on_press: StuNoInput.text = StuNoInput.text[:-1]
             
-        
         Button:
             text: "Add Points"
             size_hint: 0.8, 0.05
             pos_hint: {"center_x": 0.5, "center_y": 0.05}
             on_press: 
-                root.add_points(StuNoInput)
+                root.add_points(StuNoInput.text)
 
 <HistScreen>:
-    Button:
-        text: "Page 2"
-        on_release: app.root.current = "user2"
-    Button:
-        text: "Page 4"
-        on_release: app.root.current = "user4"
+    FloatLayout:        
+        TextInput:
+            size_hint: 0.4, 0.05
+            pos_hint: {"center_x": 0.5, "center_y": 0.7}
+            id: StuNo
+        
+        BoxLayout:
+            size_hint: 0.8, 0.15
+            pos_hint: {"center_x": 0.5, "center_y": 0.6}
+            Button:
+                text: "1"
+                on_press: StuNo.text += "1"
+            Button:
+                text: "2"
+                on_press: StuNo.text += "2"
+            Button:
+                text: "3"
+                on_press: StuNo.text += "3"
+        
+        BoxLayout:
+            size_hint: 0.8, 0.15
+            pos_hint: {"center_x": 0.5, "center_y": 0.45}
+            Button:
+                text: "4"
+                on_press: StuNo.text += self.text
+            Button:
+                text: "5"
+                on_press: StuNo.text += self.text
+            Button:
+                text: "6"
+                on_press: StuNo.text += self.text
+        
+        BoxLayout:
+            size_hint: 0.8, 0.15
+            pos_hint: {"center_x": 0.5, "center_y": 0.3}
+            Button:
+                text: "7"
+                on_press: StuNo.text += self.text
+            Button:
+                text: "8"
+                on_press: StuNo.text += self.text
+            Button:
+                text: "9"
+                on_press: StuNo.text += self.text
+        
+        BoxLayout:
+            size_hint: 0.8, 0.15
+            pos_hint: {"center_x": 0.5, "center_y": 0.15}
+            Button:
+                text: "CLR"
+                on_press: StuNo.text = ""
+            Button:
+                text: "0"
+                on_press: StuNo.text += self.text
+            Button:
+                text: "Bkspace"
+                on_press: StuNo.text = StuNoInput.text[:-1]
+            
+        Button:
+            text: "Check History"
+            size_hint: 0.8, 0.05
+            pos_hint: {"center_x": 0.5, "center_y": 0.05}
+            on_press: 
+                root.checkHistory(StuNo.text)
 
 <Hist2Screen>:
     Button:
@@ -237,6 +325,7 @@ Builder.load_string("""
             on_press:
                 display = self.text
                 pointValue = "25"
+                root.returningValues(pointValue, display)
                 root.dismiss()
         Button:
             text: "Attend Mass"
@@ -245,6 +334,7 @@ Builder.load_string("""
             on_press:
                 display = self.text
                 pointValue = "100"
+                root.returningValues(pointValue, display)
                 root.dismiss()
         Button:
             text: "Sharelife"
@@ -253,6 +343,7 @@ Builder.load_string("""
             on_press: 
                 display = self.text
                 pointValue = "1000"
+                root.returningValues(pointValue, display)
                 root.dismiss()
         
         Button:
@@ -262,7 +353,9 @@ Builder.load_string("""
             on_press:
                 display = self.text
                 pointValue = "1000"
+                root.returningValues(pointValue, display)
                 root.dismiss()
+                
         Button:
             text: "Other School Event"
             pos_hint: {"center_x": 0.5, "center_y": 0.55}
@@ -270,6 +363,7 @@ Builder.load_string("""
             on_press:
                 display = self.text
                 pointValue = str(slider_id.value)
+                root.returningValues(pointValue, display)
                 root.dismiss()
         Slider:
             pos_hint: {"center_x": 0.5, "center_y": 0.45}
@@ -288,6 +382,13 @@ Builder.load_string("""
             pos_hint: {"center_x": 0.5, "center_y": 0.25}
             size_hint_y: 0.1
             on_press: root.dismiss()
+<HistPopup>:
+    display: labelText
+    title: "Your point history:"
+    size_hint: 0.5, 1
+    Label:
+        id: labelText
+        text: ""
 """)
 
 # Basic login screen
@@ -307,25 +408,48 @@ class EventScreen(Screen):
         for i in range(4):
             code += chars[random.randint(0, len(chars) - 1)]
         if (usedCodes.__contains__(code)):
-            self.code_Generate()
-        usedCodes.append(code)
-        return code
+            if (datetime.datetime.now() > usedCodes.get(code).get_date() + datetime.timedelta(hours=24)):
+                self.code_Generate()
+
+            else:
+                return code
+        else:
+            return code
 
     def open_event_choices(self):
+        self.popuptext.text = str(currentEventDc)
         customPopup().open()
 
-    def label_change(self, text):
-        if text:
-            self.popuptext.text = text
+    def createEvent(self, des):
+        code = self.code_Generate()
+        myEvent = Event(float(currentEventPV),currentEventDc, des)
+        usedCodes[code] = myEvent
+        global currentEvent
+        currentEvent = myEvent
+        global currentCode
+        currentCode = code
+
+    def get_des(self):
+        return currentEvent.get_des()
 
 # Barcode Scanner After event selection --> should display the event accessed based on code
 class ScanScreen(Screen):
-    def add_points(self, stuNo, code, points):
-        studentDB.get(stuNo).addActivity(code, points)
+    def add_points(self, stuNo):
+        studentDB.get(str(stuNo)).addActivity(currentCode, currentEvent.get_points())
 
 # Viewing a student's history record
 class HistScreen(Screen):
-    pass
+    def open_history(self):
+        historyPopup.open()
+    def checkHistory(self, stuNo):
+        hisString = ""
+        try:
+            currentStuHist = studentDB[stuNo].get_history()
+            for code in currentStuHist:
+                hisString + code + " " + usedCodes[code].get_des() + " " + usedCodes[code].get_date() + "\n"
+            return hisString
+        except:
+            return "Invalid Student Number, Try again"
 
 # Check History for an event --> Should last for 1 day
 class Hist2Screen(Screen):
