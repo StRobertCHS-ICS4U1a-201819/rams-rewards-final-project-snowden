@@ -33,6 +33,7 @@ loginInfo = {"": ""}
 usedCodes = {}
 studentDB = {}
 
+
 currentEventPV = ""
 currentEventDc = ""
 
@@ -80,6 +81,7 @@ class Student(object):
         return self.activityNo
 
 studentDB["0000000"] = Student("Felix. Y")
+
 
 class Teacher(object):
     def __init__(self, name):
