@@ -36,6 +36,7 @@ studentDB = {}
 currentEventPV = ""
 currentEventDc = ""
 pointVariable = 0
+hisString = "Invalid Student Number, Try again"
 
 class Event(object):
     def __init__(self, points, eventType, description):
@@ -63,7 +64,7 @@ class customPopup(Popup):
         global currentEventDc
         currentEventDc = eventType
 
-class historyPopup(Popup):
+class histPopup(Popup):
     pass
 
 class Student(object):
@@ -298,11 +299,11 @@ Builder.load_string("""
             pos_hint: {"center_x": 0.5, "center_y": 0.05}
             on_press: 
                 root.checkHistory(StuNo.text)
+                root.open_history()
 
 <Hist2Screen>:
     Button:
         text: "Page 3"
-        on_release: app.root.current = "user3"
 
 <CustButton@Button>:
     font_size: 30
@@ -383,7 +384,8 @@ Builder.load_string("""
             pos_hint: {"center_x": 0.5, "center_y": 0.25}
             size_hint_y: 0.1
             on_press: root.dismiss()
-<HistPopup>:
+<histPopup>:
+    id: histPopup
     display: labelText
     title: "Your point history:"
     size_hint: 0.5, 1
@@ -431,7 +433,6 @@ class EventScreen(Screen):
         currentCode = code
         global pointVariable
         pointVariable = myEvent.get_points()
-        print (pointVariable)
 
     def get_des(self):
         return currentEvent.get_des()
@@ -445,16 +446,17 @@ class ScanScreen(Screen):
 # Viewing a student's history record
 class HistScreen(Screen):
     def open_history(self):
-        historyPopup.open()
+        histPopup().open()
+
     def checkHistory(self, stuNo):
+        global hisString
         hisString = ""
         try:
             currentStuHist = studentDB[stuNo].get_history()
             for code in currentStuHist:
                 hisString + code + " " + usedCodes[code].get_des() + " " + usedCodes[code].get_date() + "\n"
-            return hisString
         except:
-            return "Invalid Student Number, Try again"
+            hisString = "Invalid Student Number, Try again"
 
 # Check History for an event --> Should last for 1 day
 class Hist2Screen(Screen):
