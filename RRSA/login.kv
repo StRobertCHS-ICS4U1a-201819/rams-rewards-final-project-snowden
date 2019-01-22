@@ -5,18 +5,26 @@ ScreenManagement:
 <LoginPage>:
     name: "login_page"
     BoxLayout:
-        orientation: 'vertical'
+        orientation: "vertical"
+        size_hint_y: None
+        height: "600dp"
         Label:
             text: "Username"
+            font_size: 50
+            color: 1, 0.9, 0, 1
         TextInput:
             id: login
         Label:
             text: "Password"
+            font_size: 50
+            color: 1, 0.9, 0.5, 1
         TextInput:
             id: passw
             password: True # hide password
         Button:
             text: "log in"
+            font_size: 50
+            color: 0.6, 0.9, 0, 1
             on_release:
                 root.verify_credentials()
                 root.manager.transition.direction = "up"
