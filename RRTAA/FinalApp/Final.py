@@ -435,6 +435,7 @@ class EventScreen(Screen):
         currentCode = code
         global pointVariable
         pointVariable = myEvent.get_points()
+        print(pointVariable)
 
     def get_des(self):
         return currentEvent.get_des()
