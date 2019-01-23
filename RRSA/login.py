@@ -15,6 +15,7 @@ class UserPage(Screen):
 class ScreenManagement(ScreenManager):
     pass
 
+
 screen_manager = ScreenManager()
 
 
@@ -24,9 +25,11 @@ screen_manager.add_widget(UserPage(name="user_page"))
 
 kv_file = Builder.load_file('login.kv')
 
+
 class LoginApp(App):
     def builder(self):
         return kv_file
+
 
 if __name__ == '__main__':
     LoginApp().run()
