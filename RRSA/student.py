@@ -46,7 +46,7 @@ PageLayout:
             text: '0000000'
             on_press: print("test")
         AsyncImage:
-            source: 'https://i.redd.it/lr720nuui4z11.png'
+            source: 'qrcode.50152115.png'
 """)
 
 

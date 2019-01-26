@@ -1,5 +1,8 @@
 from django.http import HttpResponse
 
+def index(request, id):
 
-def index(request):
-    return HttpResponse("class. You're at")
+# c = newkkkk()
+#c.calculatein(id)
+
+    return HttpResponse(request.method+"class.  You're at   "+id)
